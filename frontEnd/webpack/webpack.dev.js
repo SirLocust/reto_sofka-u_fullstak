@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
   mode: 'development',
@@ -6,6 +7,10 @@ module.exports = {
   devServer: {
     hot: true,
     open: true,
+    static: {
+      directory: path.resolve(__dirname, '..', './src/assets'),
+      publicPath: '/',
+    },
   },
   plugins: [
     new webpack.DefinePlugin({

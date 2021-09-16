@@ -6,13 +6,7 @@ import { ListTodoCategories } from '../interfaces/listTodoCategory'
 import { TodoCategory } from '../interfaces/todoCategory'
 
 const initialState: ListTodoCategories = {
-  listTodos: [
-    {
-      id: Date.now(),
-      name: 'trabajar',
-      todos: [],
-    },
-  ],
+  listTodos: [],
 }
 
 const todosListReducer = createSlice({
@@ -28,9 +22,10 @@ const todosListReducer = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       getDatAsync.fulfilled,
-      (state, action: PayloadAction<TodoCategory>) => {
+      (state, action: PayloadAction<ListTodoCategories>) => {
         return {
-          listTodos: [...state.listTodos, action.payload],
+          ...state,
+          listTodos: action.payload.listTodos,
         }
       }
     )

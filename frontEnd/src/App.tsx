@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux'
 import { FormTodoCategory } from './components/forms/formTodoCategory'
-import { PageTodoCategory } from './components/pageTodoCategory'
+import { PageTodoCategory } from './components/page/pageTodoCategory'
 import { store } from './store/store'
 export const App = () => {
   return (

@@ -1,12 +1,10 @@
 import React from 'react'
 import { TodoCategory } from '../../interfaces/todoCategory'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppDispatch } from '../../store/store.hooks'
-
-import { getDatAsync } from '../../helpers/getDataAsync'
+// import { useAppDispatch } from '../../store/store.hooks'
 
 export const FormTodoCategory: React.FC = () => {
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
 
   const { register, handleSubmit } = useForm<TodoCategory>({
     defaultValues: {
@@ -15,8 +13,8 @@ export const FormTodoCategory: React.FC = () => {
       todos: [],
     },
   })
-  const onSubmit: SubmitHandler<TodoCategory> = (data) => {
-    dispatch(getDatAsync(data))
+  const onSubmit: SubmitHandler<TodoCategory> = () => {
+    // dispatch(getDatAsync())
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
