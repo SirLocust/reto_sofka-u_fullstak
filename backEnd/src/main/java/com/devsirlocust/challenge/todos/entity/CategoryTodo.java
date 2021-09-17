@@ -37,7 +37,7 @@ public class CategoryTodo {
 
   private String name;
 
-  @OneToMany(targetEntity = Todo.class, fetch = FetchType.EAGER)
+  @OneToMany(targetEntity = Todo.class)
   @JoinColumn(name = "categoryTodoId", referencedColumnName = "id")
   @Cascade(org.hibernate.annotations.CascadeType.ALL)
   private List<Todo> todos;
