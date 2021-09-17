@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getDatAsync } from '../../helpers/getDataAsync'
+import { getDataAsync } from '../../helpers/FetchDataAsync'
 
 import { getListTodosSelector } from '../../reducers/todosListReducer'
 import { useAppDispatch } from '../../store/store.hooks'
@@ -11,8 +11,9 @@ export const PageTodoCategory: React.FC = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getDatAsync())
-  }, [])
+    // dispatch(addTodos)
+    dispatch(getDataAsync())
+  }, [listCategoriesTodo])
 
   return (
     <div>

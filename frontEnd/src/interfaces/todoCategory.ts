@@ -1,7 +1,7 @@
 import { Todo } from './todo'
 
 export interface TodoCategory {
-  id?: number
+  id: number
   name: string
   todos: Todo[]
 }

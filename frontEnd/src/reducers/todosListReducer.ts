@@ -1,9 +1,7 @@
-import { getDatAsync } from './../helpers/getDataAsync'
+import { TodoCategory } from './../interfaces/todoCategory'
 import { RootState } from './../store/store'
 import { createSlice, PayloadAction, Reducer } from '@reduxjs/toolkit'
 import { ListTodoCategories } from '../interfaces/listTodoCategory'
-
-import { TodoCategory } from '../interfaces/todoCategory'
 
 const initialState: ListTodoCategories = {
   listTodos: [],
@@ -18,21 +16,23 @@ const todosListReducer = createSlice({
         listTodos: [...state.listTodos, action.payload],
       }
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(
-      getDatAsync.fulfilled,
-      (state, action: PayloadAction<ListTodoCategories>) => {
-        return {
-          ...state,
-          listTodos: action.payload.listTodos,
-        }
+    setTodos: (state, action: PayloadAction<ListTodoCategories>) => {
+      return {
+        listTodos: action.payload.listTodos,
       }
-    )
+    },
+    deleteTodo: (state, action: PayloadAction<TodoCategory>) => {
+      return {
+        ...state,
+        listTodos: state.listTodos.filter(
+          (todoCategory) => todoCategory.id !== action.payload.id
+        ),
+      }
+    },
   },
 })
 
-export const { addTodos } = todosListReducer.actions
+export const { addTodos, setTodos, deleteTodo } = todosListReducer.actions
 
 export const getListTodosSelector = (state: RootState) =>
   state.listTodosCategories
