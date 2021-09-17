@@ -34,6 +34,6 @@ public class Todo {
   private Boolean completed;
 
   // @JoinColumn(name = "CATEGORY_ID")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long categoryTodoId;
 }
