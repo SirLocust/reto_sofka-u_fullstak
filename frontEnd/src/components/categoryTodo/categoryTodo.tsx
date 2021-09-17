@@ -11,7 +11,6 @@ export const CategoryTodo = ({ categoryTodo }: AppProps) => {
   const dispatch = useDispatch()
 
   const hadledDelete = (id: number) => {
-    // console.log('s')
     dispatch(deleteDataAsync(id))
   }
 

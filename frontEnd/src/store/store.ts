@@ -2,9 +2,11 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import thunk from 'redux-thunk'
 import listTodosCategories from '../reducers/todosListReducer'
+import CategoryState from '../reducers/categoryReducer'
 export const store = configureStore({
   reducer: {
     listTodosCategories,
+    CategoryState,
   },
   middleware: (curryGetDefaultMiddleware) =>
     curryGetDefaultMiddleware().concat(thunk),
