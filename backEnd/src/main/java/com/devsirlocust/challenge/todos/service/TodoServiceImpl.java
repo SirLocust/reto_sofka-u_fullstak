@@ -5,8 +5,11 @@ import java.util.Optional;
 import com.devsirlocust.challenge.todos.entity.Todo;
 import com.devsirlocust.challenge.todos.repository.TodoRepository;
 
+import org.springframework.stereotype.Service;
+
 import lombok.AllArgsConstructor;
 
+@Service
 @AllArgsConstructor
 public class TodoServiceImpl implements TodoService {
 
