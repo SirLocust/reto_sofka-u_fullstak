@@ -31,12 +31,10 @@ export const CategoryTodo = ({ categoryTodo }: AppProps) => {
         <section className="todoapp">
           <header className="header">
             <h1>{categoryTodo.name}</h1>
-            <button onClick={() => hadledDelete(categoryTodo.id)}>X</button>
+
             <FormTodo categoryTodo={categoryTodo} />
           </header>
           <section className="main">
-            <input id="toggle-all" className="toggle-all" type="checkbox" />
-            <label htmlFor="toggle-all">Mark all as complete</label>
             <ul className="todo-list">
               {categoryTodo.todos?.map((todo: Todo) => {
                 return <TodoComponent key={todo.id} todo={todo} />
@@ -44,24 +42,12 @@ export const CategoryTodo = ({ categoryTodo }: AppProps) => {
             </ul>
           </section>
           <footer className="footer">
-            <span className="todo-count">
-              <strong>0</strong> item left
-            </span>
-            <ul className="filters">
-              <li>
-                <a className="selected" href="#/">
-                  All
-                </a>
-              </li>
-              <li>
-                <a href="#/active">Active</a>
-              </li>
-              <li>
-                <a href="#/completed">Completed</a>
-              </li>
-            </ul>
-
-            <button className="clear-completed">Clear completed</button>
+            <button
+              className="clear-completed"
+              onClick={() => hadledDelete(categoryTodo.id)}
+            >
+              Delete
+            </button>
           </footer>
         </section>
       </div>

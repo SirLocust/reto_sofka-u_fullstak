@@ -17,7 +17,7 @@ export const TodoComponent = ({ todo }: AppProsp) => {
   const getCategoryStateSelectorStore = useAppSelector(getCategoryStateSelector)
   const category = getCategoryStateSelectorStore.category
   const dispatch = useDispatch()
-  // const  = useSelector(getListTodosSelector)
+
   const hadledDelete = (id: number, e: React.SyntheticEvent) => {
     e.preventDefault()
     dispatch(deleteDataTodoAsync(id, category))

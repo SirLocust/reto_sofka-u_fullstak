@@ -17,10 +17,16 @@ export const FormTodoCategory: React.FC = () => {
     dispatch(postDataAsync(data))
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('name')} />
+    <div className="input-container">
+      <form className="flex-coluum" onSubmit={handleSubmit(onSubmit)}>
+        <input
+          className="input"
+          placeholder="ingrese una nueva nota"
+          {...register('name')}
+        />
 
-      <input type="submit" />
-    </form>
+        <input type="submit" className="btn1" />
+      </form>
+    </div>
   )
 }

@@ -15,10 +15,9 @@ export const PageTodoCategory: React.FC = () => {
   }, [dispatch])
 
   return (
-    <div>
-      {listCategoriesTodo.listTodos.map((todoCategory, index) => (
-        <CategoryTodo key={index} categoryTodo={todoCategory} />
-        // <p key={index}>{todoCategory.name}</p>
+    <div className="container">
+      {listCategoriesTodo.listTodos.map((todoCategory) => (
+        <CategoryTodo key={todoCategory.id} categoryTodo={todoCategory} />
       ))}
     </div>
   )
