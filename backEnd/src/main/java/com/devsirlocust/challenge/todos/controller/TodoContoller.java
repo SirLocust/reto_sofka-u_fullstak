@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import com.devsirlocust.challenge.todos.dto.TodoDto;
 import com.devsirlocust.challenge.todos.entity.Todo;
 import com.devsirlocust.challenge.todos.service.TodoService;
 
@@ -41,7 +42,7 @@ public class TodoContoller {
 
   @PostMapping()
   public ResponseEntity<Map<String, Object>> createTodo(@RequestBody Todo todo) {
-    Todo todoDb = this.todoService.setTodo(todo);
+    TodoDto todoDb = this.todoService.setTodo(todo);
     Map<String, Object> body = new HashMap<>();
     body.put("data", todoDb);
     body.put("message", "Categoria creado con exito");
@@ -51,7 +52,7 @@ public class TodoContoller {
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Map<String, Object>> deleteCategoryTodo(@PathVariable("id") Long id) {
-    Todo todoDb = this.todoService.deleteTodo(id);
+    TodoDto todoDb = this.todoService.deleteTodo(id);
     Map<String, Object> body = new HashMap<>();
 
     if (todoDb == null) {

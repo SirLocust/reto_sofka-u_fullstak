@@ -1,8 +1,11 @@
 package com.devsirlocust.challenge.todos.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.devsirlocust.challenge.todos.dto.CategoryTodoDto;
+import com.devsirlocust.challenge.todos.dto.mapper.ParseDto;
 import com.devsirlocust.challenge.todos.entity.CategoryTodo;
 import com.devsirlocust.challenge.todos.repository.CategoryTodoRepository;
 
@@ -12,39 +15,44 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
 @Service
-// @AllArgsConstructor
+@AllArgsConstructor
 public class CategoryTodoServiceImpl implements CategoryTodoService {
 
   // private final
-  @Autowired
-  CategoryTodoRepository categoryTodoRepository;
+  private final ParseDto parseDto;
+  private final CategoryTodoRepository categoryTodoRepository;
 
   @Override
-  public List<CategoryTodo> getAllCategoiresTodos() {
+  public List<CategoryTodoDto> getAllCategoiresTodos() {
+    List<CategoryTodo> categoryTodos = this.categoryTodoRepository.findAll();
+    List<CategoryTodoDto> categoryTodoDtos = new ArrayList<>();
+    for (CategoryTodo categoryTodo : categoryTodos) {
+      categoryTodoDtos.add(parseDto.convertToDto(categoryTodo));
+    }
 
-    return this.categoryTodoRepository.findAll();
+    return categoryTodoDtos;
   }
 
   @Override
-  public CategoryTodo setCategoryTodo(CategoryTodo categoryTodo) {
+  public CategoryTodoDto setCategoryTodo(CategoryTodo categoryTodo) {
 
-    return this.categoryTodoRepository.saveAndFlush(categoryTodo);
+    return parseDto.convertToDto(this.categoryTodoRepository.saveAndFlush(categoryTodo));
   }
 
   @Override
-  public CategoryTodo deleCategoryTodo(Long id) {
-    CategoryTodo categoryTodoDb = this.findById(id);
+  public CategoryTodoDto deleCategoryTodo(Long id) {
+    CategoryTodo categoryTodoDb = parseDto.convertToEntity(this.findById(id));
     if (categoryTodoDb == null) {
       return null;
     }
     this.categoryTodoRepository.delete(categoryTodoDb);
-    return categoryTodoDb;
+    return parseDto.convertToDto(categoryTodoDb);
   }
 
   @Override
-  public CategoryTodo findById(Long id) {
+  public CategoryTodoDto findById(Long id) {
     Optional<CategoryTodo> categoryTodoD = this.categoryTodoRepository.findById(id);
-    return categoryTodoD.orElse(null);
+    return parseDto.convertToDto(categoryTodoD.orElse(null));
   }
 
 }

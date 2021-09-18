@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.devsirlocust.challenge.todos.dto.CategoryTodoDto;
 import com.devsirlocust.challenge.todos.entity.CategoryTodo;
 import com.devsirlocust.challenge.todos.service.CategoryTodoService;
 
@@ -30,7 +31,7 @@ public class CategoryController {
 
   @GetMapping
   public ResponseEntity<Map<String, Object>> listCategoryTodos() {
-    List<CategoryTodo> categoryTodosDb = this.categoryTodoService.getAllCategoiresTodos();
+    List<CategoryTodoDto> categoryTodosDb = this.categoryTodoService.getAllCategoiresTodos();
     Map<String, Object> body = new HashMap<>();
     body.put("data", categoryTodosDb);
     body.put("message", "Category todo  generada con exito");
@@ -40,7 +41,7 @@ public class CategoryController {
 
   @PostMapping()
   public ResponseEntity<Map<String, Object>> createCategoryTodo(@RequestBody CategoryTodo categoryTodo) {
-    CategoryTodo categoryTodoCreate = this.categoryTodoService.setCategoryTodo(categoryTodo);
+    CategoryTodoDto categoryTodoCreate = this.categoryTodoService.setCategoryTodo(categoryTodo);
     Map<String, Object> body = new HashMap<>();
     body.put("data", categoryTodoCreate);
     body.put("message", "Categoria creado con exito");
@@ -50,7 +51,7 @@ public class CategoryController {
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Map<String, Object>> deleteCategoryTodo(@PathVariable("id") Long id) {
-    CategoryTodo categoryTodoDb = this.categoryTodoService.deleCategoryTodo(id);
+    CategoryTodoDto categoryTodoDb = this.categoryTodoService.deleCategoryTodo(id);
     Map<String, Object> body = new HashMap<>();
     body.put("data", categoryTodoDb);
     if (categoryTodoDb == null) {

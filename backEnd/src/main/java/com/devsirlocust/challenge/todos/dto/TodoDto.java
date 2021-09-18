@@ -1,10 +1,10 @@
 package com.devsirlocust.challenge.todos.dto;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 
+
 @Data
-@AllArgsConstructor
 public class TodoDto {
 
   private Long id;
