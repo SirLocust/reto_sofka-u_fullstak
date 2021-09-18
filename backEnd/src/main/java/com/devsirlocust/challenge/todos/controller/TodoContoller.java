@@ -59,6 +59,7 @@ public class TodoContoller {
       body.put("errors", "category no existe");
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
+    body.put("data", todoDb);
     body.put("message", "Category Eliminada con exito");
     body.put("errors", null);
     return ResponseEntity.status(HttpStatus.OK).body(body);
