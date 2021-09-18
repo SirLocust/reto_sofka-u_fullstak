@@ -21,18 +21,29 @@ const todosListReducer = createSlice({
         listTodos: action.payload.listTodos,
       }
     },
-    deleteTodo: (state, action: PayloadAction<TodoCategory>) => {
+    deleteTodos: (state, action: PayloadAction<TodoCategory>) => {
       return {
-        ...state,
         listTodos: state.listTodos.filter(
           (todoCategory) => todoCategory.id !== action.payload.id
         ),
       }
     },
+    updateTodos: (state, action: PayloadAction<TodoCategory>) => {
+      return {
+        ...state,
+        listTodos: state.listTodos.map((todoCategory) => {
+          if (todoCategory.id === action.payload.id) {
+            todoCategory = { ...action.payload }
+          }
+          return todoCategory
+        }),
+      }
+    },
   },
 })
 
-export const { addTodos, setTodos, deleteTodo } = todosListReducer.actions
+export const { addTodos, setTodos, deleteTodos, updateTodos } =
+  todosListReducer.actions
 
 export const getListTodosSelector = (state: RootState) =>
   state.listTodosCategories

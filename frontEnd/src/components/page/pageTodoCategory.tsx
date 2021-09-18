@@ -1,19 +1,18 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+
 import { getDataAsync } from '../../helpers/FetchDataAsync'
 
 import { getListTodosSelector } from '../../reducers/todosListReducer'
-import { useAppDispatch } from '../../store/store.hooks'
-import { CategoryTodo } from '../categoryTodo/categoryTodo'
+import { useAppDispatch, useAppSelector } from '../../store/store.hooks'
+import { CategoryTodo } from '../categoryTodo/categoryTodoComponent'
 
 export const PageTodoCategory: React.FC = () => {
-  const listCategoriesTodo = useSelector(getListTodosSelector)
+  const listCategoriesTodo = useAppSelector(getListTodosSelector)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    // dispatch(addTodos)
     dispatch(getDataAsync())
-  }, [listCategoriesTodo])
+  }, [dispatch])
 
   return (
     <div>

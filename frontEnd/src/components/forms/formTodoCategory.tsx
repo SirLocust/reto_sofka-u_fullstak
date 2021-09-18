@@ -9,7 +9,7 @@ export const FormTodoCategory: React.FC = () => {
   const dispatch = useAppDispatch()
   const { register, handleSubmit } = useForm<TodoCategory>({
     defaultValues: {
-      name: '',
+      name: 's',
       todos: [],
     },
   })
