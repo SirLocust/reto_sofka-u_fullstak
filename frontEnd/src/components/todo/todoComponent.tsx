@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {
   deleteDataTodoAsync,
@@ -11,6 +11,9 @@ import { getCategoryStateSelector } from '../../reducers/categoryReducer'
 import { useAppSelector } from '../../store/store.hooks'
 
 export const TodoComponent = ({ todo }: AppProsp) => {
+  const [isEditing, setIsEditing] = useState(false)
+  const [valueInput, setValueInput] = useState('')
+
   const getCategoryStateSelectorStore = useAppSelector(getCategoryStateSelector)
   const category = getCategoryStateSelectorStore.category
   const dispatch = useDispatch()
@@ -28,9 +31,28 @@ export const TodoComponent = ({ todo }: AppProsp) => {
     dispatch(putDataTodoAsync(newTodo, category))
     // dispatch(updateTodos(newCategory))
   }
+  const handleToggleEdit = () => {
+    setIsEditing(true)
+  }
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      e.stopPropagation()
+      const newTodo: Todo = {
+        ...todo,
+        name: valueInput,
+      }
+
+      dispatch(putDataTodoAsync(newTodo, category))
+      setIsEditing(false)
+    }
+  }
   return (
     <form action="">
-      <li key={todo.id} className={todo.completed ? 'completed' : ''}>
+      <li
+        key={todo.id}
+        className={isEditing ? 'editing' : todo.completed ? 'completed' : ''}
+      >
         <div className="view">
           <input
             className="toggle"
@@ -40,7 +62,14 @@ export const TodoComponent = ({ todo }: AppProsp) => {
               handledUpdate()
             }}
           />
-          <label>{todo.name + todo.id}</label>
+          <label
+            onClick={() => {
+              handleToggleEdit()
+            }}
+            aria-hidden="true"
+          >
+            {todo.name}
+          </label>
           <button
             className="destroy"
             onClick={(e: React.SyntheticEvent) => {
@@ -48,7 +77,14 @@ export const TodoComponent = ({ todo }: AppProsp) => {
             }}
           ></button>
         </div>
-        <input className="edit" />
+        <input
+          onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            handleKeyPress(e)
+          }}
+          onChange={(event) => setValueInput(event.target.value)}
+          className="edit"
+          placeholder={todo.name}
+        />
       </li>
     </form>
   )
