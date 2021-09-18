@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.devsirlocust.challenge.todos.entity.Todo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

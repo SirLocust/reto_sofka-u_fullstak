@@ -9,9 +9,9 @@ public interface CategoryTodoService {
 
   public List<CategoryTodoDto> getAllCategoiresTodos();
 
-  public CategoryTodo setCategoryTodo(CategoryTodo categoryTodo);
+  public CategoryTodoDto setCategoryTodo(CategoryTodo categoryTodo);
 
-  public CategoryTodo deleCategoryTodo(Long id);
+  public CategoryTodoDto deleCategoryTodo(Long id);
 
-  public CategoryTodo findById(Long id);
+  public CategoryTodoDto findById(Long id);
 }
